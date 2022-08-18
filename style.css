@@ -19,7 +19,6 @@ h1 {
 .calculator {
   background: rgb(63, 63, 63);
   width: 400px;
-  height: 500px;
   border: 2px solid black;
   border-radius: 16px;
   -webkit-box-shadow: 5px 5px 8px 1px rgba(0, 0, 0, 0.34);
@@ -49,7 +48,7 @@ h1 {
   padding-top: 8px;
 }
 
-.calc-button {
+.key {
   height: 92px;
   width: 92px;
   box-sizing: border-box;
@@ -63,9 +62,26 @@ h1 {
   color: white;
   font-size: 32px;
   font-family: Arial, Helvetica, sans-serif;
+  user-select: none;
 }
 
-.calc-button:hover {
+.op {
+  background: rgb(96, 96, 96);
+}
+
+#AC {
+  background: darkred;
+}
+
+#C {
+  background: darkgoldenrod;
+}
+
+#eq {
+  background: darkgreen;
+}
+
+.key:hover {
   box-shadow: none;
   scale: 0.95;
 }
