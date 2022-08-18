@@ -43,6 +43,16 @@ function handleClick(event) {
   } else if (key === 'dot') {
     setCurrentNumber(currentNumber + '.');
 
+  } else if (key === 'sgn') {
+    if (currentNumber.startsWith('-')) {
+      setCurrentNumber(currentNumber.replace('-', ''));
+    } else {
+      setCurrentNumber('-' + currentNumber);
+    }
+
+  } else if (key === 'pct') {
+    setCurrentNumber(currentNumber * 100);
+
   } else if (OPERATORS.includes(key)) {
     if (lastOperator === null) {
       setLastNumber(currentNumber);

@@ -82,10 +82,6 @@
   background: darkgreen;
 }
 
-.unused {
-  visibility: hidden;
-}
-
 .key:hover {
   box-shadow: none;
   scale: 0.95;
