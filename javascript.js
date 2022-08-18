@@ -46,12 +46,12 @@ function handleClick(event) {
   } else if (key === 'sgn') {
     if (currentNumber.startsWith('-')) {
       setCurrentNumber(currentNumber.replace('-', ''));
-    } else {
+    } else if (currentNumber !== '0') {
       setCurrentNumber('-' + currentNumber);
     }
 
   } else if (key === 'pct') {
-    setCurrentNumber(currentNumber * 100);
+    setCurrentNumber(currentNumber / 100);
 
   } else if (OPERATORS.includes(key)) {
     if (lastOperator === null) {
