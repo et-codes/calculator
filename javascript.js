@@ -40,7 +40,7 @@ function handleClick(event) {
       ? setCurrentNumber(key)
       : setCurrentNumber(currentNumber + key);
 
-  } else if (key === 'dot') {
+  } else if (key === 'dot' && !currentNumber.includes('.')) {
     setCurrentNumber(currentNumber + '.');
 
   } else if (key === 'sgn') {
