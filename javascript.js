@@ -51,7 +51,7 @@ function handleClick(event) {
     }
 
   } else if (key === 'pct') {
-    setCurrentNumber(currentNumber / 100);
+    setCurrentNumber((Number(currentNumber) / 100).toString());
 
   } else if (OPERATORS.includes(key)) {
     if (lastOperator === null) {

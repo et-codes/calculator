@@ -1,4 +1,4 @@
-/* CONTAINER */
+/* CONTAINER AND HEADER */
 .container {
   background: rgb(2, 0, 36);
   background: linear-gradient(135deg, rgb(0, 69, 148) 0%, rgb(6, 33, 90) 100%);
@@ -7,6 +7,20 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  font-family: "Questrial", sans-serif;
+  color: white;
+}
+
+h1 {
+  font-size: 48px;
+  opacity: 0.5;
+  margin-bottom: 0;
+}
+
+h2 {
+  font-family: "Gloria Hallelujah", cursive;
+  font-size: 36px;
+  margin: 0;
 }
 
 /* CALCULATOR BODY */
@@ -89,22 +103,22 @@
 
 /* FOOTER */
 footer {
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin-bottom: 16px;
+  font-family: "Gloria Hallelujah", cursive;
   color: white;
   opacity: 0.5;
 }
 
-img:hover {
-  transform: rotate(360deg);
-  transition: transform 0.7s;
-}
-
 img {
   transform: rotate(-360deg);
+  transition: transform 0.7s;
+  vertical-align: middle;
+}
+
+img:hover {
+  transform: rotate(360deg);
   transition: transform 0.7s;
 }
