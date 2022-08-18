@@ -4,9 +4,8 @@ const OPERATORS = ['mul', 'div', 'add', 'sub'];
 
 let currentNumber = '0';
 let lastNumber = '0';
-let rightOfDecimal = false;
-let operatorPressed = false;
-let lastOperator = 'add';
+let lastOperator = null;
+let pressedC = false;
 
 function initKeypad() {
   const keys = Array.from(document.getElementsByClassName('key'));
@@ -16,29 +15,23 @@ function initKeypad() {
 }
 
 function setCurrentNumber(number) {
-  if (operatorPressed) {
-    display(lastNumber);
-    currentNumber = '0';
-    operatorPressed = false;
-  } else {
-    currentNumber = number;
-    display(currentNumber);
-  }
-  console.log(`current: ${currentNumber} last: ${lastNumber} op pressed: ${operatorPressed}`);
+  currentNumber = number;
+  display();
 }
 
 function setLastNumber(number) {
   lastNumber = number;
-  console.log(`current: ${currentNumber} last: ${lastNumber} op pressed: ${operatorPressed}`);
+  display();
 }
 
 function handleClick(event) {
   const key = event.target.id;
   // console.log(`key: ${key}`);
   if (key === 'AC') {
-    setCurrentNumber('0');
     setLastNumber('0');
+    setCurrentNumber('0');
   } else if (key === 'C') {
+    pressedC = true;
     setCurrentNumber('0');
   } else if (NUMBERS.includes(key)) {
     currentNumber === '0'
@@ -47,25 +40,30 @@ function handleClick(event) {
   } else if (key === 'dot') {
     setCurrentNumber(currentNumber + '.');
   } else if (OPERATORS.includes(key)) {
-    operatorPressed = true;
-    lastOperator = key;
-    if (lastNumber === '0') {
+    if (lastOperator === null) {
       setLastNumber(currentNumber);
     } else {
-      const result = operate(lastNumber, currentNumber, key);
+      const result = operate(lastNumber, currentNumber, lastOperator);
       setLastNumber(result);
     }
-    setCurrentNumber(currentNumber);
+    setCurrentNumber('0');
+    lastOperator = key;
   } else if (key === 'eq') {
     const result = operate(lastNumber, currentNumber, lastOperator);
-    operatorPressed = true;
-    setCurrentNumber(result);
     setLastNumber('0');
+    setCurrentNumber(result);
+    lastOperator = null;
   }
 }
 
-function display(number) {
+function display() {
   const display = document.getElementById('display');
+  if (pressedC) {
+    number = '0';
+    pressedC = false;
+  } else {
+    number = currentNumber !== '0' ? currentNumber : lastNumber;
+  }
   let displayedNumber;
   if (number.length >= MAX_DIGITS) {
     // Use exponential notation if the number is long
@@ -77,7 +75,6 @@ function display(number) {
 }
 
 function operate(a, b, op) {
-  console.log(`operate: ${a} ${b} ${op}`);
   a = Number(a);
   b = Number(b);
   switch (op) {
