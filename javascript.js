@@ -26,19 +26,23 @@ function setLastNumber(number) {
 
 function handleClick(event) {
   const key = event.target.id;
-  // console.log(`key: ${key}`);
+
   if (key === 'AC') {
     setLastNumber('0');
     setCurrentNumber('0');
+
   } else if (key === 'C') {
     pressedC = true;
     setCurrentNumber('0');
+
   } else if (NUMBERS.includes(key)) {
     currentNumber === '0'
       ? setCurrentNumber(key)
       : setCurrentNumber(currentNumber + key);
+
   } else if (key === 'dot') {
     setCurrentNumber(currentNumber + '.');
+
   } else if (OPERATORS.includes(key)) {
     if (lastOperator === null) {
       setLastNumber(currentNumber);
@@ -48,6 +52,7 @@ function handleClick(event) {
     }
     setCurrentNumber('0');
     lastOperator = key;
+
   } else if (key === 'eq') {
     const result = operate(lastNumber, currentNumber, lastOperator);
     setLastNumber('0');
@@ -58,12 +63,14 @@ function handleClick(event) {
 
 function display() {
   const display = document.getElementById('display');
+
   if (pressedC) {
     number = '0';
     pressedC = false;
   } else {
     number = currentNumber !== '0' ? currentNumber : lastNumber;
   }
+
   let displayedNumber;
   if (number.length >= MAX_DIGITS) {
     // Use exponential notation if the number is long
@@ -71,6 +78,7 @@ function display() {
   } else {
     displayedNumber = number;
   }
+
   display.textContent = displayedNumber;
 }
 
