@@ -33,8 +33,11 @@ h1 {
   font-family: "VT323", monospace;
   font-size: 64px;
   padding: 8px;
+  margin-bottom: 8px;
   text-align: right;
-  border: 2px solid black;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+  border-right-color: rgba(255, 255, 255, 0.3);
   border-radius: 8px;
   text-shadow: 2px 2px rgba(0, 0, 0, 0.15);
 }
@@ -52,7 +55,9 @@ h1 {
   height: 92px;
   width: 92px;
   box-sizing: border-box;
-  border: 1px solid white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom-color: rgba(0, 0, 0, 0.3);
+  border-right-color: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
   background: gray;
   box-shadow: 5px 5px 8px 1px rgba(0, 0, 0, 0.34);
