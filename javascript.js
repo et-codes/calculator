@@ -1,3 +1,7 @@
+// TODO: Add keyboard support
+// TODO: Comment code
+// TODO: Update README.md with details on how it works
+
 const MAX_DIGITS = 15;
 const NUMBERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const OPERATORS = ['mul', 'div', 'add', 'sub'];
@@ -74,8 +78,6 @@ function handleClick(event) {
 function display() {
   const display = document.getElementById('display');
 
-  // If clear (C) was pressed, display 0
-  // Display current number if non-zero, otherwise last number
   if (pressedC) {
     number = '0';
     pressedC = false;
@@ -84,7 +86,7 @@ function display() {
   }
 
   let displayedNumber;
-  numberParts = number.split('.');
+  const numberParts = number.split('.');
   if (numberParts[0].length >= MAX_DIGITS) {
     // If number left of decimal exceeds screen length, use exponential
     displayedNumber = Number(number).toExponential(MAX_DIGITS - 6);
