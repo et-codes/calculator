@@ -74,6 +74,8 @@ function handleClick(event) {
 function display() {
   const display = document.getElementById('display');
 
+  // If clear (C) was pressed, display 0
+  // Display current number if non-zero, otherwise last number
   if (pressedC) {
     number = '0';
     pressedC = false;
@@ -82,9 +84,13 @@ function display() {
   }
 
   let displayedNumber;
-  if (number.length >= MAX_DIGITS) {
-    // Use exponential notation if the number is long
+  numberParts = number.split('.');
+  if (numberParts[0].length >= MAX_DIGITS) {
+    // If number left of decimal exceeds screen length, use exponential
     displayedNumber = Number(number).toExponential(MAX_DIGITS - 6);
+  } else if (number.length >= MAX_DIGITS && numberParts[1]) {
+    // If total length is too long, but not left of decimal, round off
+    displayedNumber = Number(number).toFixed(MAX_DIGITS - numberParts[0].length - 1);
   } else {
     displayedNumber = number;
   }
