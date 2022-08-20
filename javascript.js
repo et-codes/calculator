@@ -145,9 +145,3 @@ function operate(a, b, op) {
       return String(a / b);
   }
 }
-
-function app() {
-  setCurrentNumber('0');
-}
-
-app();
