@@ -1,22 +1,32 @@
-// TODO: Add keyboard support
+// TODO: Fix display problems
 // TODO: Comment code
 // TODO: Update README.md with details on how it works
 
 const MAX_DIGITS = 15;
 const NUMBERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const OPERATORS = ['mul', 'div', 'add', 'sub'];
+const KEY_OPERATORS = {
+  '*': 'mul',
+  '/': 'div',
+  '+': 'add',
+  '-': 'sub',
+  '=': 'eq',
+  'Enter': 'eq',
+  '.': 'dot',
+  '%': 'pct'
+};
 
 let currentNumber = '0';
 let lastNumber = '0';
 let lastOperator = null;
 let pressedC = false;
 
-function initKeypad() {
-  const keys = Array.from(document.getElementsByClassName('key'));
-  keys.forEach(key => {
-    key.addEventListener('click', handleClick);
-  });
-}
+// Add event listeners for mouse clicks and keyboard
+const keys = Array.from(document.getElementsByClassName('key'));
+keys.forEach(key => {
+  key.addEventListener('click', handleClick);
+});
+document.addEventListener('keyup', handleKeyPress);
 
 function setCurrentNumber(number) {
   currentNumber = number;
@@ -29,8 +39,19 @@ function setLastNumber(number) {
 }
 
 function handleClick(event) {
-  const key = event.target.id;
+  handleInput(event.target.id);
+}
 
+function handleKeyPress(event) {
+  const key = event.key;
+  if (Object.keys(KEY_OPERATORS).includes(key)) {
+    handleInput(KEY_OPERATORS[key]);
+  } else if (NUMBERS.includes(key)) {
+    handleInput(key);
+  }
+}
+
+function handleInput(key) {
   if (key === 'AC') {
     setLastNumber('0');
     setCurrentNumber('0');
@@ -86,6 +107,7 @@ function display() {
   }
 
   let displayedNumber;
+  console.log(number);
   const numberParts = number.split('.');
   if (numberParts[0].length >= MAX_DIGITS) {
     // If number left of decimal exceeds screen length, use exponential
@@ -117,7 +139,6 @@ function operate(a, b, op) {
 
 function app() {
   setCurrentNumber('0');
-  initKeypad();
 }
 
 app();
