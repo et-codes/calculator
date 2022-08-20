@@ -2,6 +2,7 @@
 // TODO: Comment code
 // TODO: Update README.md with details on how it works
 
+const HISTORY_LENGTH = 20;
 const MAX_DIGITS = 15;
 const NUMBERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const OPERATORS = ['mul', 'div', 'add', 'sub'];
@@ -20,6 +21,7 @@ let currentNumber = '0';
 let lastNumber = '0';
 let lastOperator = null;
 let pressedC = false;
+const history = [];
 
 // Add event listeners for mouse clicks and keyboard
 const keys = Array.from(document.getElementsByClassName('key'));
@@ -106,8 +108,15 @@ function display() {
     number = currentNumber !== '0' ? currentNumber : lastNumber;
   }
 
+  // Store recent states
+  if (history.length >= HISTORY_LENGTH) history.shift();
+  history.push(`currentNumber: ${currentNumber}, lastNumber: ${lastNumber}, number: ${number}`);
+
+  // Let's try to catch the pesky error where lastNumber is undefined on .split() below
+  const errorMessage = 'lastNumber not properly defined.';
+  console.assert(lastNumber, { errorMessage, history });
+
   let displayedNumber;
-  console.log(number);
   const numberParts = number.split('.');
   if (numberParts[0].length >= MAX_DIGITS) {
     // If number left of decimal exceeds screen length, use exponential
